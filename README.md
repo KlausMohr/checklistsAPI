@@ -1,4 +1,4 @@
-Olá, esta API está sendo desenvolvida para auto aprendizado. Conceitos de classes retirados de tutoriais escritos e no formato de vídeos (YouTube), assim como da leitura da documentação das tecnologias utilizadas.
+Olá, esta API está sendo desenvolvida para auto aprendizado. Conceitos de classes e organização retirados de tutoriais escritos e no formato de vídeos (YouTube), assim como da leitura da documentação das tecnologias utilizadas.
 Será consumida por uma aplicação construida com o Framework Flutter.
 Tecnologias utilizadas na API:
   Python
