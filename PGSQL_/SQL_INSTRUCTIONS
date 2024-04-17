@@ -1,3 +1,5 @@
+"Instruções SQL utilizadas na criação das tabelas, corrigido relação atráves de Foreign Keys após a criação das tabelas"
+
 CREATE TABLE checklist_app.diagnostic(
 	ID SERIAL NOT NULL PRIMARY KEY,
 	MODULES VARCHAR (30)

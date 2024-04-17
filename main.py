@@ -1,4 +1,4 @@
-from flask import Flask, make_response, jsonify, request
+from flask import Flask
 from infra.repositories.owner_repository import OwnerRepository
 from infra.repositories.vehicle_repository import VehicleRepository
 

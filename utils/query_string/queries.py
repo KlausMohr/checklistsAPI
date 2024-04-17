@@ -1,3 +1,6 @@
+"""Queries utilizadas antes da utilização do SQLAlchemy"""
+
+
 #ALL PEOPLE RELATED QUERIES
 GET_ALL_OWNER = "SELECT * FROM checklist_app.tb_owner;"
 
