@@ -1,5 +1,7 @@
-from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, ForeignKey, String
+from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.sql.expression import text
+from sqlalchemy.sql.sqltypes import TIMESTAMP
 from dataclasses import dataclass
 
 Base = declarative_base()
@@ -17,6 +19,9 @@ class Vehicle(Base):
     vin = Column(String(30), nullable=False)
     mileage = Column(String(20), nullable=False)
     licenseplt = Column(String(8), nullable=False)
+    created_at = Column(
+        TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
+    )
 
     __table_args__ = {"schema": "checklist_app"}
 

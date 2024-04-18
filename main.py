@@ -1,9 +1,9 @@
 from flask import Flask
 from infra.repositories.owner_repository import OwnerRepository
 from infra.repositories.vehicle_repository import VehicleRepository
+from app import create_app
 
-app = Flask(__name__)
-app.config["JSON_SORT_KEYS"] = False
+app = create_app()
 
 
 """Rotas para Proprietários"""

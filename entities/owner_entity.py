@@ -1,8 +1,10 @@
-from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, ForeignKey, String
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql.expression import text
+from sqlalchemy.sql.sqltypes import TIMESTAMP
 from dataclasses import dataclass
+from infra.database_config.database_config import Base
 
-Base = declarative_base()
 
 @dataclass
 class Owner(Base):
@@ -15,6 +17,9 @@ class Owner(Base):
     telephone = Column(String)
     email = Column(String)
     address = Column(String)
+    created_at = Column(
+        TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
+    )
 
     __table_args__ = {"schema": "checklist_app"}
 
