@@ -1,10 +1,9 @@
-from flask import Flask
-from infra.repositories.owner_repository import OwnerRepository
-from infra.repositories.vehicle_repository import VehicleRepository
-from app import create_app
+from api.infra.repositories.owner_repository import OwnerRepository
+from api.infra.repositories.vehicle_repository import VehicleRepository
+from api import create_app
+
 
 app = create_app()
-
 
 """Rotas para Proprietários"""
 
