@@ -10,7 +10,7 @@ class Diagnosis(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True,
                    autoincrement=True, nullable=False)
-    module_system_test = db.Column(db.Integer(), nullable=False)
+    module_system_test = db.Column(db.SmallInteger(), nullable=False)
     created_at = db.Column(
         TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
     )

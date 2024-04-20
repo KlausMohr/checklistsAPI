@@ -12,20 +12,21 @@ from api.entities.checklist.underbody.brake import Brake
 
 class Underboody(db.Model):
     __tablename__ = "tb_underbody"
-    _table_args__ = {"schema": "checklist_app"}
+    __table_args__ = {"schema": "checklist_app"}
 
     id = db.Column(db.Integer(), primary_key=True,
                    autoincrement=True, nullable=False)
     frame_id = db.Column(db.Integer(), db.ForeignKey(
-        "checklist_app.tb_frame", ondelete="CASCADE"))
+        "checklist_app.tb_frame.id", ondelete="CASCADE"))
     exhaust_id = db.Column(db.Integer(), db.ForeignKey(
-        "checklist_app.tb_exhaust", ondelete="CASCADE"))
+        "checklist_app.tb_exhaust.id", ondelete="CASCADE"))
     trans_diff_transfer_id = db.Column(db.Integer(), db.ForeignKey(
-        "checklist_app.tb_transmission_differential", ondelete="CASCADE"))
+        "checklist_app.tb_transmission_differential.id", ondelete="CASCADE"))
     tires_wheels_id = db.Column(db.Integer(), db.ForeignKey(
-        "checklist_app.tb_tires_wheels", ondelete="CASCADE"))
+        "checklist_app.tb_tires_wheels.id", ondelete="CASCADE"))
     brake_id = db.Column(db.Integer(), db.ForeignKey(
-        "checklist_app.tb_brake", ondelete="CASCADE"))
+        "checklist_app.tb_brake.id", ondelete="CASCADE"))
+
     created_at = db.Column(
         TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
     )
@@ -37,7 +38,12 @@ class Underboody(db.Model):
     brake = db.relationship(Brake)
 
     def __repr__(self):
-        return f""
+        return f"""Underbody [id = {self.id},
+                                 frame_id = {self.frame_id},
+                                 exhaust_id= {self.exhaust_id},
+                                 trans_diff_transfer_id= {self.trans_diff_transfer_id},
+                                 tires_wheels_id= {self.tires_wheels_id},
+                                 brake_id= {self.brake_id}]"""
 
     def to_json(self):
         return {

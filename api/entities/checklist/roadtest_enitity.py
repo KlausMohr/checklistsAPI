@@ -37,7 +37,7 @@ class RoadTest(db.Model):
     )
 
     def __repr__(self):
-        return f"Road Test [id= {self.id},
+        return f"""Road Test [id= {self.id},
                             engine_starting= {self.engine_starting},
                             engine_idling= {self.engine_idling},
                             remote_start= {self.remote_start},
@@ -55,7 +55,7 @@ class RoadTest(db.Model):
                             cruise_control= {self.cruise_control},
                             gauges_operation= {self.gauges_operation},
                             driver_select_memory= {self.driver_select_memory},
-                            no_abnormal_wind_noise = {self.no_abnormal_wind_noise}]"
+                            no_abnormal_wind_noise = {self.no_abnormal_wind_noise}]"""
 
     def to_json(self):
         return {

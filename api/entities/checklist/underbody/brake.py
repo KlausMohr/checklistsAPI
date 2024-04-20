@@ -22,7 +22,7 @@ class Brake(db.Model):
     )
 
     def __repr__(self):
-        return f"Brakes[
+        return f"""Brakes[
             id= {self.id},
             caliper_wheels_cylinders= {self.calipers_wheels_cylinders},
             front_brake_pads_shoes= {self.front_brake_pads_shoes},
@@ -30,7 +30,7 @@ class Brake(db.Model):
             rotor_drums= {self.rotor_drums},
             brake_lines_hoses_fittings= {self.brake_lines_hoses_fittings},
             parking_brake= {self.parking_brake},
-            master_cylinder_booster = {self.master_cylinder_booster}]"
+            master_cylinder_booster = {self.master_cylinder_booster}]"""
 
     def to_json(self):
         return {

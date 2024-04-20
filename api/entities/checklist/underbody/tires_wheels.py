@@ -6,7 +6,7 @@ from api.utils.database.database import db
 
 class TiresWheels(db.Model):
     __tablename__ = "tb_tires_wheels"
-    _table_args__ = {"schema": "checklist_app"}
+    __table_args__ = {"schema": "checklist_app"}
 
     id = db.Column(db.Integer(), primary_key=True,
                    autoincrement=True, nullable=False)
@@ -31,7 +31,7 @@ class TiresWheels(db.Model):
     )
 
     def __repr__(self):
-        return f"Tires and Wheels [id = {self.id},
+        return f"""Tires and Wheels [id = {self.id},
                                    tires_match_size = {self.tires_match_size},
                                    wheels_match_size= {self.wheels_match_size},
                                    twi_front_lr= {self.twi_front_lr},
@@ -47,7 +47,7 @@ class TiresWheels(db.Model):
                                    springs= {self.springs},
                                    struts_shocks= {self.struts_shocks},
                                    wheel_alignment= {self.wheel_alignment},
-                                   power_steering_pump = {self.power_steering_pump}]"
+                                   power_steering_pump = {self.power_steering_pump}]"""
 
     def to_json(self):
         return {

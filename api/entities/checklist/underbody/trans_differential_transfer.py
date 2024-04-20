@@ -22,13 +22,13 @@ class TransDiffTransfer(db.Model):
     )
 
     def __repr__(self):
-        return f"Transmission related [id= {self.id},
+        return f"""Transmission related [id= {self.id},
                                        automatic_transmission = {self.automatic_transmission},
                                        manual_transmission= {self.manual_transmission},
                                        four_by_four_operation= {self.four_by_four_operation},
                                        universal_cv_joints_boots= {self.universal_cv_joints_boots},
                                        tranmission_mounts= {self.transmission_mounts},
-                                       differential_drive_axle = {self.differential_drive_axle}]"
+                                       differential_drive_axle = {self.differential_drive_axle}]"""
 
     def to_json(self):
         return {
