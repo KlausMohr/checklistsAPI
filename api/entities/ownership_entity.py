@@ -7,9 +7,12 @@ from api.entities.vehicle_entity import Vehicle
 
 class Ownership(db.Model):
     __tablename__ = "tb_ownership"
+    __table_args__ = {"schema": "checklist_app"}
 
     id = db.Column(db.Integer(), primary_key=True, autoincrement=True, nullable=False)
-    owner_id = db.Column(db.Integer(), db.ForeignKey("checklist_app.tb_owner.id", ondelete="CASCADE"))
+    owner_id = db.Column(
+        db.Integer(), db.ForeignKey("checklist_app.tb_owner.id", ondelete="CASCADE")
+    )
     vehicle_id = db.Column(
         db.Integer(), db.ForeignKey("checklist_app.tb_vehicle.id", ondelete="CASCADE")
     )
@@ -19,8 +22,6 @@ class Ownership(db.Model):
 
     owner = db.relationship(Owner)
     vehicle = db.relationship(Vehicle)
-
-    __table_args__ = {"schema": "checklist_app"}
 
     def __repr__(self):
         return f"Ownership [owner_id={Owner.name}, vehicle_id={Vehicle.model}]"
