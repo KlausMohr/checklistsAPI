@@ -7,7 +7,8 @@ class Frame(db.Model):
     __tablename__ = "tb_frame"
     __table_args__ = {"schema": "checklist_app"}
 
-    id = db.Column(db.Integer(), primary_key=True, autoincrement=True, nullable=False)
+    id = db.Column(db.Integer(), primary_key=True,
+                   autoincrement=True, nullable=False)
     frame_damage = db.Column(db.SmallInteger(), nullable=False)
     fuel_supply_system = db.Column(db.SmallInteger(), nullable=False)
 

@@ -9,7 +9,8 @@ class Ownership(db.Model):
     __tablename__ = "tb_ownership"
     __table_args__ = {"schema": "checklist_app"}
 
-    id = db.Column(db.Integer(), primary_key=True, autoincrement=True, nullable=False)
+    id = db.Column(db.Integer(), primary_key=True,
+                   autoincrement=True, nullable=False)
     owner_id = db.Column(
         db.Integer(), db.ForeignKey("checklist_app.tb_owner.id", ondelete="CASCADE")
     )

@@ -7,7 +7,8 @@ class Exhaust(db.Model):
     __tablename__ = "tb_exhaust"
     __table_args__ = {"schema": "checklist_app"}
 
-    id = db.Column(db.Integer(), primary_key=True, autoincrement=True, nullable=False)
+    id = db.Column(db.Integer(), primary_key=True,
+                   autoincrement=True, nullable=False)
     exhaust_system_condition = db.Column(db.SmallInteger(), nullable=False)
     emissions_control = db.Column(db.SmallInteger(), nullable=False)
 

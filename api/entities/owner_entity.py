@@ -10,7 +10,8 @@ from api.utils.database.database import db
 class Owner(db.Model):
     __tablename__ = "tb_owner"
 
-    id = db.Column(db.Integer(), primary_key=True, autoincrement=True, nullable=False)
+    id = db.Column(db.Integer(), primary_key=True,
+                   autoincrement=True, nullable=False)
     name = db.Column(db.String(), nullable=False)
     cpf = db.Column(db.String())
     birthday = db.Column(db.String())

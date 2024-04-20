@@ -10,7 +10,8 @@ from api.utils.database.database import db
 class Vehicle(db.Model):
     __tablename__ = "tb_vehicle"
 
-    id = db.Column(db.Integer(), primary_key=True, autoincrement=True, nullable=False)
+    id = db.Column(db.Integer(), primary_key=True,
+                   autoincrement=True, nullable=False)
     make = db.Column(db.String(), nullable=False)
     model = db.Column(db.String(), nullable=False)
     year = db.Column(db.String(), nullable=False)
