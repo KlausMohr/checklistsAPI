@@ -11,6 +11,9 @@ class Frame(db.Model):
                    autoincrement=True, nullable=False)
     frame_damage = db.Column(db.SmallInteger(), nullable=False)
     fuel_supply_system = db.Column(db.SmallInteger(), nullable=False)
+    created_at = db.Column(
+        TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
+    )
 
     def __repr__(self):
         return f"Frame [id={self.id}, frame_damage={self.frame_damage}, fuel_supply_system={self.fuel_supply_system}]"

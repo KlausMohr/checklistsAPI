@@ -1,3 +1,6 @@
+from sqlalchemy.sql.expression import text
+from sqlalchemy.sql.sqltypes import TIMESTAMP
+
 from api.utils.database.database import db
 
 
@@ -23,6 +26,9 @@ class TiresWheels(db.Model):
     struts_shocks = db.Column(db.SmallInteger, nullable=False)
     wheel_alignment = db.Column(db.SmallInteger, nullable=False)
     power_steering_pump = db.Column(db.SmallInteger, nullable=False)
+    created_at = db.Column(
+        TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
+    )
 
     def __repr__(self):
         return f"Tires and Wheels [id = {self.id},

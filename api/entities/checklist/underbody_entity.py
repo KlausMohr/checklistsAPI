@@ -1,4 +1,8 @@
+from sqlalchemy.sql.expression import text
+from sqlalchemy.sql.sqltypes import TIMESTAMP
+
 from api.utils.database.database import db
+
 from api.entities.checklist.underbody.frame import Frame
 from api.entities.checklist.underbody.exhaust import Exhaust
 from api.entities.checklist.underbody.trans_differential_transfer import TransDiffTransfer
@@ -22,6 +26,9 @@ class Underboody(db.Model):
         "checklist_app.tb_tires_wheels", ondelete="CASCADE"))
     brake_id = db.Column(db.Integer(), db.ForeignKey(
         "checklist_app.tb_brake", ondelete="CASCADE"))
+    created_at = db.Column(
+        TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
+    )
 
     frame = db.relationship(Frame)
     exhaust = db.relationship(Exhaust)

@@ -1,3 +1,6 @@
+from sqlalchemy.sql.expression import text
+from sqlalchemy.sql.sqltypes import TIMESTAMP
+
 from api.utils.database.database import db
 
 
@@ -14,6 +17,9 @@ class Brake(db.Model):
     brake_lines_hoses_fittings = db.Column(db.SmallInteger(), nullable=False)
     parking_brake = db.Column(db.SmallInteger(), nullable=False)
     master_cylinder_booster = db.Column(db.SmallInteger(), nullable=False)
+    created_at = db.Column(
+        TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
+    )
 
     def __repr__(self):
         return f"Brakes[

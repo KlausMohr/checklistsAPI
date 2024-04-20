@@ -17,6 +17,9 @@ class TransDiffTransfer(db.Model):
     universal_cv_joints_boots = db.Column(db.SmallInteger(), nullable=False)
     transmission_mounts = db.Column(db.SmallInteger(), nullable=False)
     differential_drive_axle = db.Column(db.SmallInteger(), nullable=False)
+    created_at = db.Column(
+        TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
+    )
 
     def __repr__(self):
         return f"Transmission related [id= {self.id},
