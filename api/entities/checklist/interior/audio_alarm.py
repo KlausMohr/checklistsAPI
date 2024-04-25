@@ -9,10 +9,10 @@ class AudioAlarm(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True,
                    autoincrement=True, nullable=False)
-    radio_cd_speaker = db.Column(db.Integer(), nullable=False)
-    antenna = db.Column(db.Integer(), nullable=False)
-    alarm_system = db.Column(db.Integer(), nullable=False)
-    navigation_system = db.Column(db.Integer(), nullable=False)
+    radio_cd_speaker = db.Column(db.SmallInteger(), nullable=False)
+    antenna = db.Column(db.SmallInteger(), nullable=False)
+    alarm_system = db.Column(db.SmallInteger(), nullable=False)
+    navigation_system = db.Column(db.SmallInteger(), nullable=False)
     created_at = db.Column(TIMESTAMP(timezone=True),
                            nullable=False, server_default=text("now()"))
 

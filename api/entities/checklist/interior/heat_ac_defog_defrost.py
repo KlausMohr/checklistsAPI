@@ -9,9 +9,9 @@ class HeatACDefogDefrost(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True,
                    autoincrement=True, nullable=False)
-    ac_system = db.Column(db.Integer(), nullable=False)
-    heating_system = db.Column(db.Integer(), nullable=False)
-    defog_defrost = db.Column(db.Integer(), nullable=False)
+    ac_system = db.Column(db.SmallInteger(), nullable=False)
+    heating_system = db.Column(db.SmallInteger(), nullable=False)
+    defog_defrost = db.Column(db.SmallInteger(), nullable=False)
     created_at = db.Column(TIMESTAMP(timezone=True),
                            nullable=False, server_defautl=text("now()"))
 

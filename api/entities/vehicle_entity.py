@@ -2,11 +2,6 @@ from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from api.utils.database.database import db
 
-# from flask_sqlalchemy import SQLAlchemy
-
-# db = SQLAlchemy()
-
-
 class Vehicle(db.Model):
     __tablename__ = "tb_vehicle"
 

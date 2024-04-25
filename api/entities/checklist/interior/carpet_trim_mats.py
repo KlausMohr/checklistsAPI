@@ -9,11 +9,11 @@ class CarpetTrimMats(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True,
                    autoincrement=True, nullable=False)
-    interior_free_odor = db.Column(db.Integer(), nullable=False)
-    carpet = db.Column(db.Integer(), nullable=False)
-    floor_mats = db.Column(db.Integer(), nullable=False)
-    door_trim_panels = db.Column(db.Integer(), nullable=False)
-    headliner = db.Column(db.Integer(), nullable=False)
+    interior_free_odor = db.Column(db.SmallInteger(), nullable=False)
+    carpet = db.Column(db.SmallInteger(), nullable=False)
+    floor_mats = db.Column(db.SmallInteger(), nullable=False)
+    door_trim_panels = db.Column(db.SmallInteger(), nullable=False)
+    headliner = db.Column(db.SmallInteger(), nullable=False)
     create_at = db.Column(TIMESTAMP(timezone=True),
                           nullable=False, server_default=text("now"))
 
