@@ -27,8 +27,8 @@ class InteriorAmenities(db.Model):
     center_armrest = db.Column(db.SmallInteger(), nullable=False)
     console = db.Column(db.SmallInteger(), nullable=False)
     sun_visors = db.Column(db.SmallInteger(), nullable=False)
-    created_at = db.Columne(TIMESTAMP(timezone=True),
-                            nullable=False, server_default=text("now()"))
+    created_at = db.Column(TIMESTAMP(timezone=True),
+                          nullable=False, server_default=text("now()"))
 
     def __repr__(self):
         return f"""Interior Amenities [id={self.id},

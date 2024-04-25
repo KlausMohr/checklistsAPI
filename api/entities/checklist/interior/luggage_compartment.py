@@ -17,8 +17,8 @@ class LuggageCompartment(db.Model):
     spare_tire_airpressure = db.Column(db.SmallInteger(), nullable=False)
     tire_inflator_kit = db.Column(db.SmallInteger(), nullable=False)
     emergency_trunk_lid = db.Column(db.SmallInteger(), nullable=False)
-    created_at = db.Column(TIMESTAMP(timezone=True),
-                           nullable=False, server_default=text("now()"))
+    create_at = db.Column(TIMESTAMP(timezone=True),
+                          nullable=False, server_default=text("now()"))
 
     def __repr__(self):
         return f"""Luggage Compartment [id={self.id},

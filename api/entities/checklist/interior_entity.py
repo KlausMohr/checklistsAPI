@@ -21,8 +21,10 @@ class Interior(db.Model):
                    autoincrement=True, nullable=False)
     airbag_safety_belts_id = db.Column(db.Integer(), db.ForeignKey(
         "checklist_app.tb_airbag_safety_belts.id", ondelete="CASCADE"))
+
     audio_alarm_id = db.Column(db.Integer(), db.ForeignKey(
         "checklist_app.tb_audio_alarm.id", ondelete="CASCADE"))
+
     heat_ac_defog_defrost_id = db.Column(db.Integer(), db.ForeignKey(
         "checklist_app.tb_heat_ac_defog_defrost.id", ondelete="CASCADE"))
     interior_amenities_id = db.Column(db.Integer(), db.ForeignKey(
@@ -36,19 +38,19 @@ class Interior(db.Model):
     windows_doors_locks_id = db.Column(db.Integer(), db.ForeignKey(
         "checklist_app.tb_windows_doors_locks.id", ondelete="CASCADE"))
     luggage_compartment_id = db.Column(db.Integer(), db.ForeignKey(
-        "checklist_app.luggage_compartment.id", ondelete="CASCADE"))
+        "checklist_app.tb_luggage_compartment.id", ondelete="CASCADE"))
     create_at = db.Column(TIMESTAMP(timezone=True),
                           nullable=False, server_default=text("now()"))
 
-    airbag_safety_belts_id = db.relationship(AirbagSafetyBelts)
-    audio_alarm_id = db.relationship(AudioAlarm)
-    heat_ac_defog_defrost_id = db.relationship(HeatACDefogDefrost)
-    interior_amenities_id = db.relationship(InteriorAmenities)
-    carpet_trims_mats_id = db.relationship(CarpetTrimMats)
-    seats_id = db.relationship(Seats)
-    sunroof_convertible_top_id = db.relationship(SunroofConvertibleTop)
-    windws_doors_locks_id = db.relationship(WindowsDoorsLocks)
-    luggage_compartment_id = db.relationship(LuggageCompartment)
+    airbag_safety_belts = db.relationship(AirbagSafetyBelts)
+    audio_alarm = db.relationship(AudioAlarm)
+    heat_ac_defog_defrost = db.relationship(HeatACDefogDefrost)
+    interior_amenities = db.relationship(InteriorAmenities)
+    carpet_trims_mats = db.relationship(CarpetTrimMats)
+    seats = db.relationship(Seats)
+    sunroof_convertible_top = db.relationship(SunroofConvertibleTop)
+    windws_doors_locks = db.relationship(WindowsDoorsLocks)
+    luggage_compartment = db.relationship(LuggageCompartment)
 
     def __repr__(self):
         return f"""Interior [id= {self.id},

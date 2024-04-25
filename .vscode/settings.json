@@ -1,5 +1,6 @@
 {
     "python.terminal.launchArgs": [],
     "python.autoComplete.extraPaths": [],
-    "python.analysis.extraPaths": []
+    "python.analysis.extraPaths": [],
+    "python.REPL.enableREPLSmartSend": false
 }

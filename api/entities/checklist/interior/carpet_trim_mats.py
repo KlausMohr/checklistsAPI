@@ -15,7 +15,7 @@ class CarpetTrimMats(db.Model):
     door_trim_panels = db.Column(db.SmallInteger(), nullable=False)
     headliner = db.Column(db.SmallInteger(), nullable=False)
     create_at = db.Column(TIMESTAMP(timezone=True),
-                          nullable=False, server_default=text("now"))
+                          nullable=False, server_default=text("now()"))
 
     def __repr__(self):
         return f"""Carpet, Trim and Mats [id={self.id},

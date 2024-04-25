@@ -52,11 +52,23 @@ class Checklist(db.Model):
     roadtest = db.relationship(RoadTest)
 
     def __repr__(self):
-        return f"Ownership [owner_id={Owner.name}, vehicle_id={Vehicle.model}]"
+        return f"""Checklist [id={self.id},
+                            diagnostic_id={self.diagnostic_id},
+                            underhood={self.underhood},
+                            underbody={self.underbody},
+                            exterior={self.exterior},
+                            interior={self.interior},
+                            hybrid={self.hybrid},
+                            roadtest={self.roadtest}
+                            ]"""
 
     def to_json(self):
         return {
             "id": self.id,
-            "owner_id": self.owner_id,
-            "vehicle_id": self.vehicle_id,
+            "diagnostic_id": self.diagnostic_id,
+            "underhood": self.underhood,
+            "exterior": self.exterior,
+            "interior": self.interior,
+            "hybrid": self.hybrid,
+            "roadtest": self.roadtest
         }

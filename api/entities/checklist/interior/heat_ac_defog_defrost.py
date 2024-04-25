@@ -12,8 +12,8 @@ class HeatACDefogDefrost(db.Model):
     ac_system = db.Column(db.SmallInteger(), nullable=False)
     heating_system = db.Column(db.SmallInteger(), nullable=False)
     defog_defrost = db.Column(db.SmallInteger(), nullable=False)
-    created_at = db.Column(TIMESTAMP(timezone=True),
-                           nullable=False, server_defautl=text("now()"))
+    create_at = db.Column(TIMESTAMP(timezone=True),
+                          nullable=False, server_default=text("now()"))
 
     def __repr__(self):
         return f"""Head, AC, Defog and Defrost [id={self.id},

@@ -4,7 +4,7 @@ from api.utils.database.database import db
 
 
 class WindowsDoorsLocks(db.Model):
-    __tablename__ = "windows_doors_locks"
+    __tablename__ = "tb_windows_doors_locks"
     __table_args__ = {"schema": "checklist_app"}
 
     id = db.Column(db.Integer(), primary_key=True,
