@@ -8,7 +8,12 @@ from api.infra.repositories.exterior.doors_hood_tailgate_repository import (
 )
 from api.infra.repositories.exterior.exterior_lights import ExteriorLightsRepository
 from api.infra.repositories.exterior.exterior_repository import ExteriorRepository
-from api.infra.repositories.exterior.glass_outside_mirrors_repository import GlassOutsideMirrorsRepository
+from api.infra.repositories.exterior.glass_outside_mirrors_repository import (
+    GlassOutsideMirrorsRepository,
+)
+from api.infra.repositories.exterior.grille_trim_roof_rack_repository import (
+    GrilleTrimRoofRackRepository,
+)
 from api.infra.repositories.owner_repository import OwnerRepository
 from api.infra.repositories.vehicle_repository import VehicleRepository
 from api import create_app
@@ -127,12 +132,25 @@ def get_checklist_exterior_lights(id):
 def update_checklist_exterior_lights(id):
     return ExteriorLightsRepository.update(id)
 
+
 @app.get("/checklist/exterior/glass-outmirrors/<int:id>")
 def get_checklist_glass_ouside_mirrors(id):
     return GlassOutsideMirrorsRepository.get_by_id(id)
 
+
 @app.put("/checklist/exterior/glass-outmirrors/<int:id>")
-def get_checklist_glass_ouside_mirrors(id):
+def update_checklist_glass_ouside_mirrors(id):
     return GlassOutsideMirrorsRepository.get_by_id(id)
+
+
+@app.get("/checklist/exterior/grille-trim-roof-rack/<int:id>")
+def get_checklist_grille_trim_roof_rack(id):
+    return GrilleTrimRoofRackRepository.get_by_id(id)
+
+
+@app.put("/checklist/exterior/grille-trim-roof-rack/<int:id>")
+def update_checklist_grille_trim_roof_rack(id):
+    return GrilleTrimRoofRackRepository.get_by_id(id)
+
 
 app.run(port=18080)
