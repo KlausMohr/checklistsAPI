@@ -55,7 +55,7 @@ def create_app():
     from api.entities.checklist.exterior_entity import Exterior
     from api.entities.checklist.diagnosis_entity import Diagnosis
     from api.entities.checklist.roadtest_enitity import RoadTest
-    from api.entities.checklist.underbody_entity import Underboody
+    from api.entities.checklist.underbody_entity import Underbody
     from api.entities.checklist.hybrid_entity import Hybrid
     from api.entities.checklist.underhood_entity import Underhood
     from api.entities.checklist.interior_entity import Interior

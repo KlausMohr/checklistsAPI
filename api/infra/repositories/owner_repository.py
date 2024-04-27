@@ -2,7 +2,6 @@ from flask import request
 from api.entities.owner_entity import Owner
 from api.infra.database_config.database_config import DBConnection
 from api.infra.response_generator.response_gen import response_gen
-from api.schemas.owner_schema import OwnerSchema
 from .irepository import Repository
 
 
@@ -42,7 +41,7 @@ class OwnerRepository(Repository):
                     owner_obj.email = body["email"]
                 if "telephone" in body:
                     owner_obj.telephone = body["telephone"]
-
+                    
                 db.session.add(owner_obj)
                 db.session.commit()
                 return response_gen(

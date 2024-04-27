@@ -5,7 +5,7 @@ from api.utils.aplication.config import db
 
 from api.entities.checklist.diagnosis_entity import Diagnosis
 from api.entities.checklist.underhood_entity import Underhood
-from api.entities.checklist.underbody_entity import Underboody
+from api.entities.checklist.underbody_entity import Underbody
 from api.entities.checklist.exterior_entity import Exterior
 from api.entities.checklist.interior_entity import Interior
 from api.entities.checklist.hybrid_entity import Hybrid
@@ -45,7 +45,7 @@ class Checklist(db.Model):
 
     diagnostic = db.relationship(Diagnosis)
     underhood = db.relationship(Underhood)
-    underbody = db.relationship(Underboody)
+    underbody = db.relationship(Underbody)
     exterior = db.relationship(Exterior)
     interior = db.relationship(Interior)
     hybrid = db.relationship(Hybrid)
@@ -54,21 +54,22 @@ class Checklist(db.Model):
     def __repr__(self):
         return f"""Checklist [id={self.id},
                             diagnostic_id={self.diagnostic_id},
-                            underhood={self.underhood},
-                            underbody={self.underbody},
-                            exterior={self.exterior},
-                            interior={self.interior},
-                            hybrid={self.hybrid},
-                            roadtest={self.roadtest}
+                            underhood={self.underhood_id},
+                            underbody={self.underbody_id},
+                            exterior={self.exterior_id},
+                            interior={self.interior_id},
+                            hybrid={self.hybrid_id},
+                            roadtest={self.roadtest_id}
                             ]"""
 
     def to_json(self):
         return {
             "id": self.id,
             "diagnostic_id": self.diagnostic_id,
-            "underhood": self.underhood,
-            "exterior": self.exterior,
-            "interior": self.interior,
-            "hybrid": self.hybrid,
-            "roadtest": self.roadtest
+            "underhood": self.underhood_id,
+            "underbody": self.underbody_id,
+            "exterior": self.exterior_id,
+            "interior": self.interior_id,
+            "hybrid": self.hybrid_id,
+            "roadtest": self.roadtest_id
         }

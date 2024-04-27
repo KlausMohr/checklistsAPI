@@ -1,45 +1,41 @@
-from flask import json
+from api.entities.checklist.diagnosis_entity import Diagnosis
+from api.entities.checklist.exterior_entity import Exterior
+from api.entities.checklist.hybrid_entity import Hybrid
+from api.entities.checklist.interior_entity import Interior
+from api.entities.checklist.roadtest_enitity import RoadTest
+from api.entities.checklist.underbody_entity import Underbody
+from api.entities.checklist.underhood_entity import Underhood
 from api.entities.checklist_entity import Checklist
-from api.entities.checklist_invoice import ChecklistInvoice
-from api.entities.owner_entity import Owner
-from api.entities.vehicle_entity import Vehicle
 from api.infra.database_config.database_config import DBConnection
 from api.infra.response_generator.response_gen import response_gen
 from .irepository import Repository
 
 
-class ChecklistRepository (Repository):
+class ChecklistRepository(Repository):
     def get_all():
-        with DBConnection() as db:
-            data = db.session.query().with_entities(ChecklistInvoice, Vehicle, Owner).select_from(
-                ChecklistInvoice).join(Checklist).join(Vehicle).join(Owner).all()
-            response = []
-            for checklist, vehicle, owner in data:
-                obj = {"checklist": checklist.to_json(),
-                           "vehicle": vehicle.to_json(),
-                           "owner": owner.to_json()}
-                response.append(obj)
-  
-            return response_gen(200, "Checklists", response, "Lista de checklists realizados")
+        raise NotImplementedError
 
     def get_by_id(id):
         with DBConnection() as db:
-            data = db.session.query(ChecklistInvoice, Vehicle, Owner).select_from(ChecklistInvoice).join(
-                Vehicle).join(Owner).filter(ChecklistInvoice.id == id)
-            for checklist, vehicle, owner in data:
+            data = db.session.query().with_entities(Checklist, Diagnosis, Exterior, Hybrid, Interior, RoadTest, Underbody, Underhood).select_from(
+                Checklist).join(Diagnosis).join(Exterior).join(Hybrid).join(Interior).join(RoadTest).join(Underbody).join(Underhood).where(Checklist.id == id)
+
+            for checklist, diagnosis, exterior, hybrid, interior, roadtest, underbody, underhood in data:
                 response = {"checklist": checklist.to_json(),
-                            "vehicle": vehicle.to_json(),
-                            "owner": owner.to_json()}
-
-            # response = [checklist.to_json() for checklist in data]
-
+                            "items": {"diagnosis": diagnosis.to_json(),
+                                      "exterior": exterior.to_json(),
+                                      "hybrid": hybrid.to_json(),
+                                      "interior": interior.to_json(),
+                                      "roadtest": roadtest.to_json(),
+                                      "underbody": underbody.to_json(),
+                                      "underhood": underhood.to_json()}}
             return response_gen(200, "Checklist", response)
 
     def insert():
-        pass
+        raise NotImplementedError
 
     def delete(id):
-        return super().delete()
+        raise NotImplementedError
 
     def update(id):
-        return super().update()
+        raise NotImplementedError

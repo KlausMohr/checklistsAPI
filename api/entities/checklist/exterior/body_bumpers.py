@@ -1,12 +1,10 @@
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
-
 from api.utils.aplication.config import db
 
 
 class BodyPanelsBumper(db.Model):
     __tablename__ = "tb_body_bumper"
-    
 
     id = db.Column(db.Integer(), primary_key=True,
                    autoincrement=True, nullable=False)
@@ -18,16 +16,11 @@ class BodyPanelsBumper(db.Model):
     created_at = db.Column(
         TIMESTAMP(timezone=True), nullable=False, server_default=text("now()")
     )
-    
+
     __table_args__ = {"schema": "checklist_app"}
 
     def __repr__(self):
-        return f"""Exterior lights [id={self.id},
-                                  flood_damage={self.flood_damage},
-                                  fire_damage={self.fire_damage},
-                                  major_damage={self.major_damage},
-                                  body_panel={self.body_panel},
-                                  bumper={self.bumper}]"""
+        return f"BodyPanelsBumper [flood_damage={self.flood_damage}, fire_damage={self.fire_damage}, major_damage={self.major_damage}, body_panel={self.body_panel}, bumper={self.bumper}]"
 
     def to_json(self):
         return {
@@ -36,5 +29,5 @@ class BodyPanelsBumper(db.Model):
             "fire_damage": self.fire_damage,
             "major_damage": self.major_damage,
             "body_panel": self.body_panel,
-            "bumper": self.bumper
+            "bumper": self.bumper,
         }

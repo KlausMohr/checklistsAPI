@@ -1,4 +1,13 @@
+from api.infra.repositories.checklist_invoice_repository import (
+    ChecklistInvoiceRepository,
+)
 from api.infra.repositories.checklist_repository import ChecklistRepository
+from api.infra.repositories.exterior.body_panels_repository import BodyPanelsRepository
+from api.infra.repositories.exterior.doors_hood_tailgate_repository import (
+    DoorsHoodTailgateRepository,
+)
+from api.infra.repositories.exterior.exterior_lights import ExteriorLightsRepository
+from api.infra.repositories.exterior.exterior_repository import ExteriorRepository
 from api.infra.repositories.owner_repository import OwnerRepository
 from api.infra.repositories.vehicle_repository import VehicleRepository
 from api import create_app
@@ -65,14 +74,57 @@ def delete_vehicle(id):
 """Checklist routes"""
 
 
-@app.get("/checklists")
-def get_checklists():
-    return ChecklistRepository.get_all()
+@app.get("/checklists/invoice")
+def get_checklists_invoice():
+    return ChecklistInvoiceRepository.get_all()
+
+
+@app.get("/checklist/invoice/<int:id>")
+def get_checklist_invoice_by_id(id):
+    return ChecklistInvoiceRepository.get_by_id(id)
 
 
 @app.get("/checklist/<int:id>")
-def get_checklist_by_id(id):
+def get_checklists(id):
     return ChecklistRepository.get_by_id(id)
+
+
+"""Exterior checklist routes"""
+
+
+@app.get("/checklist/exterior/<int:id>")
+def get_checklist_exterior(id):
+    return ExteriorRepository.get_by_id(id)
+
+
+@app.get("/checklist/exterior/bodypanel/<int:id>")
+def get_checklist_bodyPBumper(id):
+    return BodyPanelsRepository.get_by_id(id)
+
+
+@app.put("/checklist/exterior/bodypanel/<int:id>")
+def update_checklist_bodyPBumper(id):
+    return BodyPanelsRepository.update(id)
+
+
+@app.get("/checklist/exterior/doorshoodtailgate/<int:id>")
+def get_checklist_doorsHTailgate(id):
+    return DoorsHoodTailgateRepository.get_by_id(id)
+
+
+@app.put("/checklist/exterior/doorshoodtailgate/<int:id>")
+def update_checklist_doorsHTailgate(id):
+    return DoorsHoodTailgateRepository.update(id)
+
+
+@app.get("/checklist/exterior/exterior-lights/<int:id>")
+def get_checklist_exterior_lights(id):
+    return ExteriorLightsRepository.get_by_id(id)
+
+
+@app.put("/checklist/exterior/exterior-lights/<int:id>")
+def update_checklist_exterior_lights(id):
+    return ExteriorLightsRepository.update(id)
 
 
 app.run(port=18080)

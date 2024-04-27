@@ -10,7 +10,7 @@ from api.entities.checklist.underbody.tires_wheels import TiresWheels
 from api.entities.checklist.underbody.brake import Brake
 
 
-class Underboody(db.Model):
+class Underbody(db.Model):
     __tablename__ = "tb_underbody"
     __table_args__ = {"schema": "checklist_app"}
 

@@ -61,7 +61,7 @@ class Interior(db.Model):
                            carpet_trims_mats_id = {self.carpet_trims_mats_id},
                            seats_id = {self.seats_id},
                            sunroof_convertible_top_id = {self.sunroof_convertible_top_id},
-                           windws_doors_locks_id = {self.windws_doors_locks_id},
+                           windws_doors_locks_id = {self.windows_doors_locks_id},
                            luggage_compartment_id = {self.luggage_compartment_id}]"""
 
     def to_json(self):
@@ -74,7 +74,7 @@ class Interior(db.Model):
             "carpet_trims_mats_id": self.carpet_trims_mats_id,
             "seats_id": self.seats_id,
             "sunroof_convertible_top_id": self.sunroof_convertible_top_id,
-            "windws_doors_locks_id": self.windws_doors_locks_id,
+            "windws_doors_locks_id": self.windows_doors_locks_id,
             "luggage_compartment_id": self.luggage_compartment_id,
 
         }
