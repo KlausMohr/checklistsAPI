@@ -29,7 +29,7 @@ class GrilleTrimRoofRackRepository(Repository):
             except Exception as exception:
                 print(exception)
                 return response_gen(
-                    204, "No content for Grille, Trim, Roof and Rack inspection"
+                    204, "No content for Grille, Trim, Roof and Rack inspection", {}
                 )
 
     def insert():
@@ -60,7 +60,9 @@ class GrilleTrimRoofRackRepository(Repository):
                 db.session.add(data)
                 db.session.commit()
                 return response_gen(
-                    200, "Grille, Trim, Roof and Rack inspection successfully updated"
+                    200,
+                    "Grille, Trim, Roof and Rack inspection successfully updated",
+                    data.to_json(),
                 )
             except Exception as exception:
                 print(exception)

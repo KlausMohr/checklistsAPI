@@ -11,6 +11,7 @@ class GlassOutsideMirrorsRepository(Repository):
 
     def get_by_id(id):
         with DBConnection() as db:
+            response = {}
             data = db.session.query(GlassOutsideMirrors).filter(
                 GlassOutsideMirrors.id == id
             )

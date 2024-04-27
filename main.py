@@ -140,7 +140,7 @@ def get_checklist_glass_ouside_mirrors(id):
 
 @app.put("/checklist/exterior/glass-outmirrors/<int:id>")
 def update_checklist_glass_ouside_mirrors(id):
-    return GlassOutsideMirrorsRepository.get_by_id(id)
+    return GlassOutsideMirrorsRepository.update(id)
 
 
 @app.get("/checklist/exterior/grille-trim-roof-rack/<int:id>")
@@ -150,7 +150,7 @@ def get_checklist_grille_trim_roof_rack(id):
 
 @app.put("/checklist/exterior/grille-trim-roof-rack/<int:id>")
 def update_checklist_grille_trim_roof_rack(id):
-    return GrilleTrimRoofRackRepository.get_by_id(id)
+    return GrilleTrimRoofRackRepository.update(id)
 
 
 app.run(port=18080)
