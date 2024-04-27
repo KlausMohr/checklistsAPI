@@ -1,7 +1,7 @@
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 
-from api.utils.database.database import db
+from api.utils.aplication.config import db
 from api.entities.checklist.exterior.body_bumpers import BodyPanelsBumper
 from api.entities.checklist.exterior.doors_hood_tailgate import DoorsHoodTailgate
 from api.entities.checklist.exterior.grille_trim_roof_rack import GrilleTrimRoofRack

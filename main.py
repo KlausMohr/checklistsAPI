@@ -1,3 +1,4 @@
+from api.infra.repositories.checklist_repository import ChecklistRepository
 from api.infra.repositories.owner_repository import OwnerRepository
 from api.infra.repositories.vehicle_repository import VehicleRepository
 from api import create_app
@@ -59,6 +60,19 @@ def update_vehicle(id):
 @app.delete("/vehicles/<int:id>")
 def delete_vehicle(id):
     return VehicleRepository.delete(id)
+
+
+"""Checklist routes"""
+
+
+@app.get("/checklists")
+def get_checklists():
+    return ChecklistRepository.get_all()
+
+
+@app.get("/checklist/<int:id>")
+def get_checklist_by_id(id):
+    return ChecklistRepository.get_by_id(id)
 
 
 app.run(port=18080)

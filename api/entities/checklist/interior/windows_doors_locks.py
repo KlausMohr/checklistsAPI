@@ -1,6 +1,6 @@
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
-from api.utils.database.database import db
+from api.utils.aplication.config import db
 
 
 class WindowsDoorsLocks(db.Model):

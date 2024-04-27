@@ -2,6 +2,7 @@ from flask import request
 from api.entities.owner_entity import Owner
 from api.infra.database_config.database_config import DBConnection
 from api.infra.response_generator.response_gen import response_gen
+from api.schemas.owner_schema import OwnerSchema
 from .irepository import Repository
 
 

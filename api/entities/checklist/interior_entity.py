@@ -1,7 +1,7 @@
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 
-from api.utils.database.database import db
+from api.utils.aplication.config import db
 from api.entities.checklist.interior.airbag_safety_belts import AirbagSafetyBelts
 from api.entities.checklist.interior.audio_alarm import AudioAlarm
 from api.entities.checklist.interior.heat_ac_defog_defrost import HeatACDefogDefrost

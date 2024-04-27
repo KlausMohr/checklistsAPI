@@ -1,7 +1,7 @@
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 
-from api.utils.database.database import db
+from api.utils.aplication.config import db
 
 from api.entities.checklist.diagnosis_entity import Diagnosis
 from api.entities.checklist.underhood_entity import Underhood
