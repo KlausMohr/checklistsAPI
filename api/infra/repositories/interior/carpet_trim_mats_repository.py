@@ -1,11 +1,11 @@
 from flask import request
-from api.entities.checklist.exterior.body_bumpers import BodyPanelsBumper
+from api.entities.checklist.interior.carpet_trim_mats import CarpetTrimMats
 from api.infra.database_config.database_config import DBConnection
 from api.infra.response_generator.response_gen import response_gen
 from ..irepository import Repository
 
 
-class BodyPanelsRepository(Repository):
+class CarpetTrimMatsRepository(Repository):
     def get_all():
         raise NotImplementedError
 
@@ -14,20 +14,18 @@ class BodyPanelsRepository(Repository):
             response = {}
             data = (
                 db.session.query()
-                .with_entities(BodyPanelsBumper)
-                .filter(BodyPanelsBumper.id == id)
+                .with_entities(CarpetTrimMats)
+                .filter(CarpetTrimMats.id == id)
             )
             try:
                 if data:
-                    for body_p_bumper in data:
-                        response = {"body_panels_bumper": body_p_bumper.to_json()}
-                return response_gen(
-                    200, "Body, Panels and Bumpers inspection", response
-                )
+                    for carpet_trim_mats in data:
+                        response = {"carpet_trim_mats": carpet_trim_mats.to_json()}
+                return response_gen(200, "Carpet, Trim and Mats inspection", response)
             except Exception as excepetion:
                 print(excepetion)
                 return response_gen(
-                    204, "No content for Body, Panels and Bumper", response
+                    204, "No content for Carpet, Trim and Mats", response
                 )
 
     def insert():
@@ -39,32 +37,31 @@ class BodyPanelsRepository(Repository):
     def update(id):
         with DBConnection() as db:
             data = (
-                db.session.query(BodyPanelsBumper)
-                .filter(BodyPanelsBumper.id == id)
-                .first()
+                db.session.query(CarpetTrimMats).filter(CarpetTrimMats.id == id).first()
             )
 
             body = request.get_json()
 
             try:
-                bodyPBumper = BodyPanelsBumper(
-                    flood_damage=body["flood_damage"],
-                    fire_damage=body["fire_damage"],
-                    major_damage=body["major_damage"],
-                    body_panel=body["body_panel"],
-                    bumper=body["bumper"],
+                carpet_trim_mats = CarpetTrimMats(
+                    interior_free_odor=body["interior_free_odor"],
+                    carpet=body["carpet"],
+                    floor_mats=body["floor_mats"],
+                    door_trim_panels=body["door_trim_panels"],
+                    headliner=body["headliner"],
                 )
-                data.flood_damage = bodyPBumper.flood_damage
-                data.fire_damage = bodyPBumper.fire_damage
-                data.major_damage = bodyPBumper.major_damage
-                data.body_panel = bodyPBumper.body_panel
-                data.bumper = bodyPBumper.bumper
+
+                data.interior_free_odor = carpet_trim_mats.interior_free_odor
+                data.carpet = carpet_trim_mats.carpet
+                data.floor_mats = carpet_trim_mats.floor_mats
+                data.door_trim_panels = carpet_trim_mats.door_trim_panels
+                data.headliner = carpet_trim_mats.headliner
 
                 db.session.add(data)
                 db.session.commit()
                 return response_gen(
                     200,
-                    "Body, Panels and Bumper",
+                    "Carpet, Trim and Mats",
                     data.to_json(),
                     "Checklist group successfully updated",
                 )
