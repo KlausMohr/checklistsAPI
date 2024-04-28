@@ -25,7 +25,35 @@ class ExteriorLightsRepository(Repository):
                 return response_gen(204, "No content for Exterior Lights", {})
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    exterior_lights = ExteriorLights(
+                        front_end_lights=body["front_end_lights"],
+                        back_end_lights=body["back_end_lights"],
+                        side_exterior_lights=body["side_exterior_lights"],
+                        hazard_lights=body["hazard_lights"],
+                        auto_on_off_lightning=body["auto_on_off_lightning"],
+                        trailer_lamp_connector=body["trailer_lamp_connector"],
+                    )
+                    db.session.add(exterior_lights)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Exterior Lights",
+                        exterior_lights.to_json(),
+                        "Exterior Lights checklist inspection successfully inserted",
+                    )
+            except ImportError as e:
+                print("Error: ", e)
+                return response_gen(
+                    400,
+                    "Exterior Lights",
+                    {},
+                    "Error while inserting a new Exterior Lights checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError
@@ -52,7 +80,7 @@ class ExteriorLightsRepository(Repository):
                 data.hazard_lights = exterior_lights.hazard_lights
                 data.auto_on_off_lightning = exterior_lights.auto_on_off_lightning
                 data.trailer_lamp_connector = exterior_lights.trailer_lamp_connector
-                
+
                 db.session.add(data)
                 db.session.commit()
                 return response_gen(

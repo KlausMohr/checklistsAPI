@@ -29,7 +29,34 @@ class CarpetTrimMatsRepository(Repository):
                 )
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    carpet_trim_mats = CarpetTrimMats(
+                        interior_free_odor=body["interior_free_odor"],
+                        carpet=body["carpet"],
+                        floor_mats=body["floor_mats"],
+                        door_trim_panels=body["door_trim_panels"],
+                        headliner=body["headliner"],
+                    )
+                    db.session.add(carpet_trim_mats)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Carpet, Trim and Mats",
+                        carpet_trim_mats.to_json(),
+                        "Carpet, Trim and Mats checklist inspection successfully inserted",
+                    )
+            except Exception as exception:
+                print("Error: ", exception)
+                return response_gen(
+                    400,
+                    "Carpet, Trim and Mats",
+                    {},
+                    "Error while inserting a new Carpet, Trim and Mats checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError

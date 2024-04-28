@@ -31,7 +31,39 @@ class DoorsHoodTailgateRepository(Repository):
                 )
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    dht_obj = DoorsHoodTailgate(
+                        doors_alignmet=body["doors_alignmet"],
+                        doors_hinges=body["doors_hinges"],
+                        roof_inspection=body["roof_inspection"],
+                        hood_alignment=body["hood_alignment"],
+                        hood_release=body["hood_release"],
+                        hood_hinges=body["hood_hinges"],
+                        hood_gass_struts=body["hood_gass_struts"],
+                        tailgate_alignment=body["tailgate_alignment"],
+                        trunk_gass_struts=body["trunk_gass_struts"],
+                        power_lift_gate_operation=body["power_lift_gate_operation"],
+                    )
+                    db.session.add(dht_obj)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Doors, Hood and Tailgate",
+                        dht_obj.to_json(),
+                        "Doors, Hood and Tailgate inspection successfully inserted",
+                    )
+            except ImportError as e:
+                print("Error: ", e)
+                return response_gen(
+                    400,
+                    "Proprietário",
+                    {},
+                    "Um erro ocorreu ao tentar inserir um novo proprietário",
+                )
 
     def delete(id):
         raise NotImplementedError

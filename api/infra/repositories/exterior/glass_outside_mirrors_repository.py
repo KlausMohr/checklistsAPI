@@ -28,7 +28,35 @@ class GlassOutsideMirrorsRepository(Repository):
                 return response_gen(204, "No content for Glass and Outside Mirrors", {})
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    obj = GlassOutsideMirrors(
+                        windshield=body["windshield"],
+                        side_glass=body["side_glass"],
+                        rear_window_tail_gate=body["rear_window_tail_gate"],
+                        wiper_blade_replacement=body["wiper_blade_replacement"],
+                        outside_mirror=body["outside_mirror"],
+                        outside_mirror_folding=body["outside_mirror_folding"],
+                    )
+                    db.session.add(obj)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Glass and Outside Mirrors",
+                        obj.to_json(),
+                        "Glass and Outside Mirrors checklist inspection successfully inserted",
+                    )
+            except ImportError as e:
+                print("Error: ", e)
+                return response_gen(
+                    400,
+                    "Glass and Outside Mirrors",
+                    {},
+                    "Error while inserting a new Glass and Outside Mirrors checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError

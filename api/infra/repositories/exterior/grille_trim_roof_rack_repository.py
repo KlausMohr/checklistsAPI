@@ -33,7 +33,32 @@ class GrilleTrimRoofRackRepository(Repository):
                 )
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    obj = GrilleTrimRoofRack(
+                        grille_inspection=body["grille_inspection"],
+                        trim_inspection=body["trim_inspection"],
+                        roof_rack_inspection=body["roof_rack_inspection"],
+                    )
+                    db.session.add(obj)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Grille, Trim, Roof and Rack",
+                        obj.to_json(),
+                        "Grille, Trim, Roof and Rack checklist inspection successfully inserted",
+                    )
+            except ImportError as e:
+                print("Error: ", e)
+                return response_gen(
+                    400,
+                    "Grille, Trim, Roof and Rack",
+                    {},
+                    "Error while inserting a new Grille, Trim, Roof and Rack checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError

@@ -25,7 +25,28 @@ class DiagnosisRepository(Repository):
                 return response_gen(204, "No content for Diagnosis", response)
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    diagnosis = Diagnosis(module_system_test=body["module_system_test"])
+                    db.session.add(diagnosis)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Diagnosis",
+                        diagnosis.to_json(),
+                        "Diagnosis checklist inspection successfully inserted",
+                    )
+            except ImportError as e:
+                print("Error: ", e)
+                return response_gen(
+                    400,
+                    "Diagnosis",
+                    {},
+                    "Error while inserting a new Diagnosis checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError

@@ -31,7 +31,32 @@ class HeatACDefogDefrostRepository(Repository):
                 )
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    heat_ac_defog_defrost = HeatACDefogDefrost(
+                        ac_system=body["ac_system"],
+                        heating_system=body["heating_system"],
+                        defog_defrost=body["defog_defrost"],
+                    )
+                    db.session.add(heat_ac_defog_defrost)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Head, AC, Defog and Defrost",
+                        heat_ac_defog_defrost.to_json(),
+                        "Head, AC, Defog and Defrost checklist inspection successfully inserted",
+                    )
+            except Exception as exception:
+                print("Error: ", exception)
+                return response_gen(
+                    400,
+                    "Head, AC, Defog and Defrost",
+                    {},
+                    "Error while inserting a new Head, AC, Defog and Defrost checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError

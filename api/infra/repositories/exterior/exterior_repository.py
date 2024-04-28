@@ -1,3 +1,4 @@
+from flask import request
 from api.entities.checklist.exterior_entity import Exterior
 from api.infra.database_config.database_config import DBConnection
 from api.infra.response_generator.response_gen import response_gen
@@ -25,7 +26,34 @@ class ExteriorRepository(Repository):
                 return response_gen(204, "No contents for Exterior items", response)
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    exterior = Exterior(
+                        body_panels_bumper_id=body["body_panels_bumper_id"],
+                        door_hood_tailgate_id=body["door_hood_tailgate_id"],
+                        grille_trim_roof_rack_id=body["grille_trim_roof_rack_id"],
+                        glass_outside_mirrors_id=body["glass_outside_mirrors_id"],
+                        exterior_lights_id=body["exterior_lights_id"],
+                    )
+                    db.session.add(exterior)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Exterior",
+                        exterior.to_json(),
+                        "Exterior checklist inspection successfully inserted",
+                    )
+            except ImportError as e:
+                print("Error: ", e)
+                return response_gen(
+                    400,
+                    "Exterior",
+                    {},
+                    "Error while inserting a new Exterior checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError

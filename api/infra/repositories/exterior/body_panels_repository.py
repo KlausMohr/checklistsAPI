@@ -31,7 +31,34 @@ class BodyPanelsRepository(Repository):
                 )
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    bodyPBumper = BodyPanelsBumper(
+                        flood_damage=body["flood_damage"],
+                        fire_damage=body["fire_damage"],
+                        major_damage=body["major_damage"],
+                        body_panel=body["body_panel"],
+                        bumper=body["bumper"],
+                    )
+                    db.session.add(bodyPBumper)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Body, Panels and Bumper",
+                        bodyPBumper.to_json(),
+                        "Body, Panels and Bumper successfully inserted",
+                    )
+            except ImportError as e:
+                print("Error: ", e)
+                return response_gen(
+                    400,
+                    "Body, Panels and Bumper",
+                    {},
+                    "Um erro ocorreu ao tentar inserir um novo proprietário",
+                )
 
     def delete(id):
         raise NotImplementedError

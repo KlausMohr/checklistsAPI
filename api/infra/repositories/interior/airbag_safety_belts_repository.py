@@ -29,7 +29,30 @@ class AirBagSafetyBeltsRepository(Repository):
                 )
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    airbag_saf_belts = AirbagSafetyBelts(
+                        airbags=body["airbags"], safety_belts=body["safety_belts"]
+                    )
+                    db.session.add(airbag_saf_belts)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Airbag and Safety Belts",
+                        airbag_saf_belts.to_json(),
+                        "Airbag and Safety Belts checklist inspection successfully inserted",
+                    )
+            except Exception as exception:
+                print("Error: ", exception)
+                return response_gen(
+                    400,
+                    "Airbag and Safety Belts",
+                    {},
+                    "Error while inserting a new Airbag and Safety Belts checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError

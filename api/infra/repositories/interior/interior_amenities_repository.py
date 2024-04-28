@@ -27,7 +27,49 @@ class InteriorAmenitiesRepository(Repository):
                 return response_gen(204, "No content for Interior amenities", response)
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    interior_amenities = InteriorAmenities(
+                        clock=body["clock"],
+                        tilt_telescopic_steering_wheel=body[
+                            "tilt_telescopic_steering_wheel"
+                        ],
+                        steering_column_lock=body["steering_column_lock"],
+                        horn=body["horn"],
+                        warning_chimes=body["warning_chimes"],
+                        instrument_panel=body["instrument_panel"],
+                        windshield_wipers=body["windshield_wipers"],
+                        rear_window_wiper=body["rear_window_wiper"],
+                        interior_light_courtesy=body["interior_light_courtesy"],
+                        rear_view_mirror=body["rear_view_mirror"],
+                        active_park_assist=body["active_park_assist"],
+                        rear_entertainment_system=body["rear_entertainment_system"],
+                        power_outlets=body["power_outlets"],
+                        lighter=body["lighter"],
+                        glove_box=body["glove_box"],
+                        center_armrest=body["center_armrest"],
+                        console=body["console"],
+                        sun_visors=body["sun_visors"],
+                    )
+                    db.session.add(interior_amenities)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Interior amenities",
+                        interior_amenities.to_json(),
+                        "Interior amenities checklist inspection successfully inserted",
+                    )
+            except Exception as exception:
+                print("Error: ", exception)
+                return response_gen(
+                    400,
+                    "Interior amenities",
+                    {},
+                    "Error while inserting a new Interior amenities checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError

@@ -23,7 +23,53 @@ class RoadtestRepository(Repository):
                 return response_gen(204, "No content for Road tests", response)
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    road_test = RoadTest(
+                    engine_starting=body["engine_starting"],
+                    engine_idling=body["engine_idling"],
+                    remote_start=body["remote_start"],
+                    engine_acceleration=body["engine_acceleration"],
+                    engine_noise=body["engine_noise"],
+                    auto_manual_transmission_shifting=body[
+                        "auto_manual_transmission_shifting"
+                    ],
+                    auto_manual_transmission_noise=body[
+                        "auto_manual_transmission_noise"
+                    ],
+                    shift_interlock_operation=body["shift_interlock_operation"],
+                    drive_axle_transer_case_operation=body[
+                        "drive_axle_transer_case_operation"
+                    ],
+                    clutch_operation=body["clutch_operation"],
+                    steering_basic_operation=body["steering_basic_operation"],
+                    body_suspension_squeaks=body["body_suspension_squeaks"],
+                    struts_schocks_operation=body["struts_schocks_operation"],
+                    brakes_abs_operation=body["brakes_abs_operation"],
+                    cruise_control=body["cruise_control"],
+                    gauges_operation=body["gauges_operation"],
+                    driver_select_memory=body["driver_select_memory"],
+                    no_abnormal_wind_noise=body["no_abnormal_wind_noise"],
+                )
+                    db.session.add(road_test)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Road tests",
+                        road_test.to_json(),
+                        "Road tests checklist inspection successfully inserted",
+                    )
+            except ImportError as e:
+                print("Error: ", e)
+                return response_gen(
+                    400,
+                    "Road tests",
+                    {},
+                    "Error while inserting a new Road tests checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError

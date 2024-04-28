@@ -25,7 +25,33 @@ class AudioAlarmRepository(Repository):
                 return response_gen(204, "No content for Audio and Alarm", response)
 
     def insert():
-        raise NotImplementedError
+        with DBConnection() as db:
+            body = request.get_json()
+            try:
+                if body:
+
+                    audio_alarm = AudioAlarm(
+                    radio_cd_speaker=body["radio_cd_speakers"],
+                    antenna=body["antenna"],
+                    alarm_system=body["alarm_system"],
+                    navigation_system=body["navigation_system"],
+                )
+                    db.session.add(audio_alarm)
+                    db.session.commit()
+                    return response_gen(
+                        200,
+                        "Audio and Alarm",
+                        audio_alarm.to_json(),
+                        "Audio and Alarm checklist inspection successfully inserted",
+                    )
+            except Exception as exception:
+                print("Error: ", exception)
+                return response_gen(
+                    400,
+                    "Audio and Alarm",
+                    {},
+                    "Error while inserting a new Audio and Alarm checklist inspection",
+                )
 
     def delete(id):
         raise NotImplementedError
