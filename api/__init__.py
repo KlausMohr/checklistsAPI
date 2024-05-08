@@ -23,6 +23,7 @@ def create_app():
     from api.entities.vehicle_entity import Vehicle
     from api.entities.ownership_entity import Ownership
     from api.entities.checklist_invoice import ChecklistInvoice
+    from api.entities.address_entity import Address
 
     from api.entities.checklist.exterior.body_bumpers import BodyPanelsBumper
     from api.entities.checklist.exterior.doors_hood_tailgate import DoorsHoodTailgate

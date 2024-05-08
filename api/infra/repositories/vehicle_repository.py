@@ -86,4 +86,4 @@ class VehicleRepository(Repository):
                     "Novo veículo cadastrado com sucesso",
                 )
             except ImportError as e:
-                print()
+                print(e)

@@ -1,3 +1,4 @@
+from api.infra.repositories.address_repository import AddressRepository
 from api.infra.repositories.checklist_invoice_repository import (
     ChecklistInvoiceRepository,
 )
@@ -22,8 +23,6 @@ from api import create_app
 app = create_app()
 
 """Rotas para Proprietários"""
-
-
 @app.get("/owners")
 def get_all_owner():
     return OwnerRepository.get_all()
@@ -49,9 +48,28 @@ def delete_owner(id):
     return OwnerRepository.delete(id)
 
 
+#################################################
+
+"""Rotas para endereço"""
+@app.get("/owners/address")
+def get_all():
+    return AddressRepository.get_all()
+
+@app.get("/owners/address/<int:id>")
+def get_by_id(id):
+    return AddressRepository.get_by_id(id)
+
+@app.post("/owners/address/insert")
+def insert_new_address():
+    return AddressRepository.insert()
+
+@app.put("/owners/address/<int:id>")
+def update_address(id):
+    return AddressRepository.update(id)
+
+################################################
+
 """Rotas para veículos"""
-
-
 @app.get("/vehicles")
 def get_all_vehicle():
     return VehicleRepository.get_all()
@@ -76,6 +94,9 @@ def update_vehicle(id):
 def delete_vehicle(id):
     return VehicleRepository.delete(id)
 
+
+
+##############################################
 
 """Checklist routes"""
 
