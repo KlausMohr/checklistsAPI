@@ -1,0 +1,6 @@
+alembic
+flask
+flask_migrate
+flask_marshmallow
+psycopg2
+SQLAlchemy
